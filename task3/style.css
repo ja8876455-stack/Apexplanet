@@ -1,0 +1,132 @@
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  font-family: Arial;
+  background:#eef2f7;
+  text-align:center;
+  padding:30px;
+}
+
+h1 {
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+.subtitle {
+  color:#666;
+  margin-bottom:25px;
+}
+
+/* -------------------------------------------------- */
+/* CAROUSEL STYLES */
+/* -------------------------------------------------- */
+
+.carousel {
+  width:80%;
+  max-width:800px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  margin-bottom:40px;
+}
+
+.slides {
+  display:flex;
+  transition:transform .6s ease-in-out;
+}
+
+.slide {
+  width:100%;
+  display:none;
+}
+
+.slide.active {
+  display:block;
+}
+
+.prev, .next {
+  position:absolute;
+  top:45%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  padding:12px 18px;
+  font-size:22px;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.prev { left:10px; }
+.next { right:10px; }
+
+.dots {
+  margin-top:10px;
+}
+
+.dot {
+  height:12px;
+  width:12px;
+  background:#bbb;
+  display:inline-block;
+  border-radius:50%;
+  margin:4px;
+  cursor:pointer;
+}
+
+.dot.active {
+  background:#333;
+}
+
+/* -------------------------------------------------- */
+/* WEATHER APP STYLES */
+/* -------------------------------------------------- */
+
+.card {
+  background:white;
+  width:80%;
+  max-width:500px;
+  margin:auto;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+
+.weather-card h2 {
+  margin-bottom:10px;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  margin-top:10px;
+  margin-bottom:10px;
+  font-size:16px;
+}
+
+button {
+  width:100%;
+  padding:12px;
+  background:#2f6edb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.result {
+  margin-top:15px;
+  font-size:18px;
+}
+
+/* Responsive */
+@media(max-width:600px) {
+  .carousel { width:100%; }
+  .card { width:100%; }
+}

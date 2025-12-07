@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task-3 | Weather App + Carousel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Task-3 Project</h1>
+  <p class="subtitle">Image Carousel + Weather API App</p>
+
+  <!-- IMAGE CAROUSEL -->
+  <div class="carousel">
+    <div class="slides">
+      <img src="https://picsum.photos/800/400?random=1" class="slide active">
+      <img src="https://picsum.photos/800/400?random=2" class="slide">
+      <img src="https://picsum.photos/800/400?random=3" class="slide">
+      <img src="https://picsum.photos/800/400?random=4" class="slide">
+    </div>
+
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+
+  <!-- WEATHER SECTION -->
+  <div class="card weather-card">
+    <h2>Weather App</h2>
+    <p>Enter a city name to get live weather data</p>
+
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button id="searchBtn">Get Weather</button>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
