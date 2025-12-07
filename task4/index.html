@@ -1,0 +1,186 @@
+<!-- Task 4 Project (HTML + CSS + JS in one document for easy copy) -->
+<!-- Sections included:
+1. Multi‑page Portfolio (About / Projects / Contact)
+2. To‑Do / Note App (LocalStorage)
+3. Product Filter & Sort Page
+-->
+
+<!-- ======================= INDEX.HTML ======================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4 – Full Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h2 class="logo">My Portfolio</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#todo">To‑Do</a>
+      <a href="#products">Products</a>
+    </nav>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
+    <h1>About Me</h1>
+    <p>Hello! I am a Web Developer skilled in HTML, CSS and JavaScript.</p>
+  </section>
+
+  <!-- PROJECT SECTION -->
+  <section id="projects" class="section">
+    <h1>My Projects</h1>
+    <div class="project-list">
+      <div class="card">Portfolio Website</div>
+      <div class="card">To‑Do App</div>
+      <div class="card">Filter Product Page</div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section">
+    <h1>Contact Me</h1>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- TO‑DO LIST SECTION -->
+  <section id="todo" class="section">
+    <h1>To‑Do / Notes (LocalStorage)</h1>
+    <div class="todo-box">
+      <input type="text" id="todoInput" placeholder="Add a task">
+      <button id="addTodo">Add</button>
+
+      <ul id="todoList"></ul>
+    </div>
+  </section>
+
+  <!-- PRODUCT FILTER SECTION -->
+  <section id="products" class="section">
+    <h1>Product Listing</h1>
+
+    <div class="filter-controls">
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="home">Home</option>
+      </select>
+
+      <select id="sortPrice">
+        <option value="none">Sort by Price</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+      </select>
+    </div>
+
+    <div id="productContainer" class="product-grid"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- ======================= STYLE.CSS ======================= -->
+<style>
+body { margin:0; font-family:Arial; background:#f2f4f8; }
+.navbar { display:flex; justify-content:space-between; padding:15px 30px; background:#1a73e8; color:white; position:sticky; top:0; }
+.navbar a { margin-left:20px; color:white; text-decoration:none; font-weight:bold; }
+.section { padding:40px; text-align:center; }
+.card { padding:20px; background:white; width:200px; margin:auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-top:20px; }
+.project-list { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; padding:20px; }
+.contact-form { display:flex; flex-direction:column; gap:10px; width:300px; margin:auto; }
+.contact-form input, textarea { padding:10px; border-radius:8px; border:1px solid #ccc; }
+.contact-form button { padding:10px; background:#1a73e8; color:white; border:none; border-radius:8px; cursor:pointer; }
+
+/* Todo */
+.todo-box { width:300px; margin:auto; background:white; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+#todoList li { background:#fff; padding:10px; margin-top:10px; border-radius:6px; display:flex; justify-content:space-between; }
+
+/* Products */
+.filter-controls { display:flex; gap:20px; justify-content:center; margin-bottom:20px; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; padding:20px; }
+.product-card { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+</style>
+
+<!-- ======================= SCRIPT.JS ======================= -->
+<script>
+/* ---------------------- TODO APP ---------------------- */
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+function renderTodo() {
+  const list = document.getElementById("todoList");
+  list.innerHTML = '';
+
+  todos.forEach((t, i) => {
+    list.innerHTML += `<li>${t}<button onclick="deleteTodo(${i})">X</button></li>`;
+  });
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+document.getElementById("addTodo").onclick = () => {
+  const val = document.getElementById("todoInput").value.trim();
+  if (!val) return;
+  todos.push(val);
+  document.getElementById("todoInput").value = '';
+  renderTodo();
+};
+
+function deleteTodo(i) {
+  todos.splice(i, 1);
+  renderTodo();
+}
+renderTodo();
+
+/* ---------------------- PRODUCT FILTER + SORT ---------------------- */
+const products = [
+  { name:"Smartphone", price:15000, category:"electronics" },
+  { name:"LED TV", price:22000, category:"electronics" },
+  { name:"T-shirt", price:500, category:"fashion" },
+  { name:"Jeans", price:1200, category:"fashion" },
+  { name:"Mixer Grinder", price:3000, category:"home" },
+  { name:"Sofa", price:15000, category:"home" }
+];
+
+function renderProducts(list) {
+  const box = document.getElementById("productContainer");
+  box.innerHTML = '';
+
+  list.forEach(p => {
+    box.innerHTML += `
+      <div class="product-card">
+        <h3>${p.name}</h3>
+        <p>Price: ₹${p.price}</p>
+        <p>Category: ${p.category}</p>
+      </div>`;
+  });
+}
+
+renderProducts(products);
+
+document.getElementById("categoryFilter").onchange = () => {
+  let c = categoryFilter.value;
+  let list = products.filter(p => c === 'all' ? true : p.category === c);
+  renderProducts(list);
+};
+
+document.getElementById("sortPrice").onchange = () => {
+  let choice = sortPrice.value;
+  let sorted = [...products];
+
+  if (choice === 'low') sorted.sort((a,b)=>a.price-b.price);
+  if (choice === 'high') sorted.sort((a,b)=>b.price-a.price);
+
+  renderProducts(sorted);
+};
+</script>
