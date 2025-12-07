@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task-2 — Intermediate Web Dev</title>
+
+  <!-- LINK CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <h1>Task-2 — Intermediate Web Dev</h1>
+        <p class="lead">Contact form + Responsive layout + Dynamic To-Do list</p>
+      </div>
+      <div class="muted">ApexPlanet Internship — HTML/CSS/JS</div>
+    </header>
+
+    <section class="grid">
+      <!-- Contact Form -->
+      <div>
+        <section class="card">
+          <h2>Contact Form (with JS validation)</h2>
+
+          <form id="contactForm" novalidate>
+            <div class="field">
+              <label>Name *</label>
+              <input id="name" name="name" type="text" required>
+              <div class="error" data-error-for="name"></div>
+            </div>
+
+            <div class="field">
+              <label>Email *</label>
+              <input id="email" name="email" type="email" required>
+              <div class="error" data-error-for="email"></div>
+            </div>
+
+            <div class="field">
+              <label>Message *</label>
+              <textarea id="message" name="message" required></textarea>
+              <div class="error" data-error-for="message"></div>
+            </div>
+
+            <button class="primary" type="submit">Send Message</button>
+            <div id="contactStatus" class="muted"></div>
+          </form>
+        </section>
+
+        <!-- To-Do List -->
+        <section class="card" style="margin-top:20px;">
+          <h2>To-Do List</h2>
+
+          <form id="todoForm" class="todo-form">
+            <input id="todoInput" type="text" placeholder="Add a task">
+            <button class="primary" type="submit">Add</button>
+          </form>
+
+          <div class="todo-options">
+            <select id="filterSelect">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+
+            <button id="clearCompleted">Clear completed</button>
+          </div>
+
+          <div id="todoList" class="todo-list"></div>
+        </section>
+      </div>
+
+      <aside class="card">
+        <h3>How to use</h3>
+        <p class="muted">Fill the form and check validation. Add tasks to To-Do list.</p>
+
+        <h4>Submit steps</h4>
+        <ol class="muted">
+          <li>Create GitHub repo</li>
+          <li>Add index.html, style.css, script.js</li>
+          <li>Upload & make public</li>
+        </ol>
+      </aside>
+    </section>
+  </main>
+
+  <!-- LINK JAVASCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>

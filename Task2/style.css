@@ -1,0 +1,95 @@
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --accent:#2b6cb0;
+  --muted:#6b7280;
+  --card:#ffffff;
+  --bg:#f3f4f6;
+  --radius:12px;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background:var(--bg);
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
+
+.container { max-width:1100px; width:100%; }
+
+header { display:flex; justify-content:space-between; margin-bottom:20px; }
+h1 { font-size:22px; }
+.lead { color:var(--muted); }
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:20px;
+}
+
+/* CARD */
+.card {
+  background:var(--card);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* FORM */
+.field { margin-bottom:12px; }
+label { display:block; font-weight:600; margin-bottom:6px; }
+input, textarea {
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+textarea { min-height:120px; resize:vertical; }
+
+.error { color:#b91c1c; font-size:14px; margin-top:4px; }
+
+.primary {
+  background:var(--accent);
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  border:0;
+  cursor:pointer;
+}
+
+/* TODO LIST */
+.todo-form { display:flex; gap:8px; margin-bottom:10px; }
+.todo-list { margin-top:10px; }
+
+.todo-item {
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+.todo-text.completed { text-decoration:line-through; color:var(--muted); }
+
+.todo-options {
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+#clearCompleted {
+  border:0;
+  background:none;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .grid {
+    grid-template-columns:1fr;
+  }
+}
